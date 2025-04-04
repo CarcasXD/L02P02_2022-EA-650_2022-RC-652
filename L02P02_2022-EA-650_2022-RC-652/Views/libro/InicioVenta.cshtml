@@ -6,7 +6,7 @@
 
 <h2>Registro de Cliente</h2>
 
-@using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post))
+@using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post, new { id = "clienteForm" }))
 {
     <div>
         @Html.LabelFor(m => m.nombre)
@@ -23,6 +23,6 @@
         @Html.EditorFor(m => m.email)
         @Html.ValidationMessageFor(m => m.email)
     </div>
-    <input type="submit" value="Iniciar Venta" />
+    @Html.ActionLink("Iniciar Venta", "InicioVenta", "libro", null, new { onclick = "document.getElementById('clienteForm').submit(); return false;", @class = "btn btn-primary" })
 }
 
