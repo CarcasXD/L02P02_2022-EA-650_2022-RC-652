@@ -2,16 +2,71 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Confirmación de Venta</title>
-    <link rel="stylesheet" href="~/content/style.css" />
+    <title>Inicio - Librería</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #55b776;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Librería</h1>
+    </header>
     <div class="container">
-        <h2>Confirmación de Venta</h2>
-        <p class="text-msg">@ViewBag.Mensaje</p>
+        <h2>Bienvenido a la Librería</h2>
+        <p style="text-align: center;">
+            <a href="@Url.Action("InicioVenta", "libro")" class="btn btn-primary">Iniciar Venta</a>
+        </p>
     </div>
+    <footer>
+        <p>2022-EA-650 - EDUARDO ALEXANDER ECHEVERRIA ALDANA | 2022-RC-652 - CARLOS ARISTIDES RIVAS CALDERON</p>
+    </footer>
 </body>
 </html>

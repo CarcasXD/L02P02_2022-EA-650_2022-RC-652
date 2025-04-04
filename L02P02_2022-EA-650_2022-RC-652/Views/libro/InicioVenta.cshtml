@@ -4,44 +4,153 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Inicio de Venta - Registro de Cliente</title>
-    <link rel="stylesheet" href="~/content/style.css" />
+    <title>Venta de Libros</title>
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #1a1a1a; 
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+            header img {
+                height: 60px; 
+                vertical-align: middle;
+            }
+
+            header h1 {
+                display: inline-block;
+                margin: 0;
+                margin-left: 15px;
+                font-size: 24px;
+                vertical-align: middle;
+            }
+
+        .container {
+            width: 100%;
+            max-width: 800px; 
+            margin: 50px auto;
+            background-color: #fff; 
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2, h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .btn-iniciar {
+            display: inline-block;
+            background-color: #28a745; 
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .btn-iniciar:hover {
+                background-color: #218838;
+            }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+            footer p {
+                margin: 0;
+            }
+    </style>
 </head>
 <body>
+    
+    <header>
+       
+        <img src="~/Img/logoUNICAES.png" alt="Logo Universidad" />
+        <h1>Venta de Libros</h1>
+    </header>
+
+  
     <div class="container">
-        <h2>Registro de Cliente</h2>
+        <h2>Proceso de venta</h2>
+        <h3>Datos del Cliente</h3>
+
         @using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post, new { id = "clienteForm" }))
         {
-            <div>
-                @Html.LabelFor(m => m.nombre)
-                @Html.EditorFor(m => m.nombre)
+            <div class="form-group">
+                @Html.LabelFor(m => m.nombre, "Nombre")
+                @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.nombre)
             </div>
-            <div>
-                @Html.LabelFor(m => m.apellido)
-                @Html.EditorFor(m => m.apellido)
+            <div class="form-group">
+                @Html.LabelFor(m => m.apellido, "Apellido")
+                @Html.TextBoxFor(m => m.apellido, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.apellido)
             </div>
-            <div>
-                @Html.LabelFor(m => m.email)
-                @Html.EditorFor(m => m.email)
+            <div class="form-group">
+                @Html.LabelFor(m => m.email, "Email")
+                @Html.TextBoxFor(m => m.email, new { @class = "form-control", type = "email" })
                 @Html.ValidationMessageFor(m => m.email)
             </div>
-            <div>
-                @Html.LabelFor(m => m.direccion)
-                @Html.EditorFor(m => m.direccion)
+            <div class="form-group">
+                @Html.LabelFor(m => m.direccion, "Dirección")
+                @Html.TextBoxFor(m => m.direccion, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.direccion)
             </div>
-            
+          
             <input type="hidden" name="created_at" value="@DateTime.Now" />
-           
-            <a href="javascript:void(0)" class="btn btn-primary" onclick="document.getElementById('clienteForm').submit();">
-                Iniciar Venta
-            </a>
+
+        
+            <div style="text-align: center;">
+                <button type="submit" class="btn-iniciar">Iniciar Venta</button>
+            </div>
         }
     </div>
+
+    <footer>
+        <p>2022-EA-650 - EDUARDO ALEXANDER ECHEVERRIA ALDANA | 2022-RC-652 - CARLOS ARISTIDES RIVAS CALDERON</p>
+    </footer>
 </body>
 </html>

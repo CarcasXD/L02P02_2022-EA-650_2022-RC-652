@@ -1,57 +1,191 @@
 ﻿@model IEnumerable<L02P02_2022_EA_650_2022_RC_652.Models.libros>
-
 @{
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Listado de Libros</title>
-    <link rel="stylesheet" href="~/content/style.css" />
+    <title>Venta de Libros</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            height: 60px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .left-section {
+            flex: 3;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .right-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .books-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .book-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .book-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .book-name {
+            font-weight: bold;
+        }
+
+        .book-author {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .book-price {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            background-color: #55b776;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #4aa066;
+            }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0069d9;
+            }
+
+        .total-box h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+            footer p {
+                margin: 0;
+                font-size: 14px;
+            }
+    </style>
 </head>
 <body>
+    <header>
+        <img src="~/Img/logoUNICAES.png" alt="Logo" class="logo" />
+        <h1>Venta de Libros</h1>
+        <p class="subtitle">Seleccione los libros y posteriormente ingrese sus datos</p>
+    </header>
     <div class="container">
-        <h2>Listado de Libros</h2>
-        <p class="text-msg">Total de libros en el carrito: @ViewBag.TotalItems</p>
-
-        <table border="1" cellpadding="5" style="width:100%;">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Imagen</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var libro in Model)
-                {
-                    <tr>
-                        <td>@libro.nombre</td>
-                        <td>@libro.descripcion</td>
-                        <td>@libro.precio?.ToString("C")</td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(libro.url_imagen))
-                            {
-                                <img src="@libro.url_imagen" alt="@libro.nombre" style="width:100px;" />
-                            }
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("AgregarLibro", "libro", FormMethod.Post))
-                            {
-                                @Html.Hidden("idLibro", libro.id)
-                                <input type="submit" class="btn btn-secondary" value="Agregar al Carrito" />
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-        <br />
-        @Html.ActionLink("Completar Venta", "CompletarVenta", "libro", null, new { @class = "btn btn-primary" })
+        <div class="left-section">
+            <div class="books-title">Libros</div>
+            @foreach (var libro in Model)
+            {
+                <div class="book-item">
+                    <div class="book-info">
+                        <span class="book-name">@libro.nombre</span>
+                        <span class="book-author">Autor</span>
+                    </div>
+                    <div class="book-price">
+                        @libro.precio?.ToString("C")
+                    </div>
+                    @using (Html.BeginForm("AgregarLibro", "libro", FormMethod.Post))
+                    {
+                        @Html.Hidden("idLibro", libro.id)
+                        <button type="submit" class="btn">+ Agregar</button>
+                    }
+                </div>
+            }
+        </div>
+        <div class="right-section">
+            <div>
+                <h3>Total Libros</h3>
+                <div class="total-amount">@ViewBag.TotalItems</div>
+                <h3>Total (USD)</h3>
+                <div class="total-amount">$@ViewBag.TotalPrice</div>
+            </div>
+            <div>
+                <a href="@Url.Action("CompletarVenta", "libro")" class="btn-primary btn">Completar</a>
+            </div>
+        </div>
     </div>
+    <footer>
+        <p>2022-EA-650 - EDUARDO ALEXANDER ECHEVERRIA ALDANA | 2022-RC-652 - CARLOS ARISTIDES RIVAS CALDERON</p>
+    </footer>
 </body>
 </html>

@@ -16,4 +16,8 @@
     <Folder Include="Views\libro\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Img\logoUNICAES.png" />
+  </ItemGroup>
+
 </Project>
