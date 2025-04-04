@@ -23,6 +23,12 @@
             @Html.EditorFor(m => m.email)
             @Html.ValidationMessageFor(m => m.email)
         </div>
+        <div>
+            @Html.LabelFor(m => m.direccion)
+            @Html.EditorFor(m => m.direccion)
+            @Html.ValidationMessageFor(m => m.direccion)
+        </div>
+        <input type="hidden" name="created_at" value="@DateTime.Now" />
         <!-- Enlace que simula un botón para enviar el formulario -->
         <a href="javascript:void(0)" class="btn btn-primary" onclick="document.getElementById('clienteForm').submit();">
             Iniciar Venta

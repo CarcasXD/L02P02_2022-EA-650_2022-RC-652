@@ -7,7 +7,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Models
         [Key]
         public int id { get; set; }
         public int? id_cliente { get; set; }
-        public int? cantidad_libro { get; set; }
-        public double? total { get; set; }
+        public int? cantidad_libros { get; set; }
+        public decimal? total { get; set; }
     }
 }

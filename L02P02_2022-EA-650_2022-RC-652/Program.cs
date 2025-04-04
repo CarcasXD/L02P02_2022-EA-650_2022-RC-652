@@ -3,20 +3,19 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Agregar servicios al contenedor.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<libroContext>(opt =>
-        opt.UseSqlServer(
-            builder.Configuration.GetConnectionString("libroDbConnection")));
+// Configurar el DbContext usando la cadena de conexión del appsettings.json
+builder.Services.AddDbContext<libroContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("libroDbConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -27,6 +26,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Ruta por defecto, que se puede ajustar si lo necesitas
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=libro}/{action=Index}/{id?}");

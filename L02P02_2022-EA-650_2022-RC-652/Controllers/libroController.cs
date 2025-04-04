@@ -33,14 +33,20 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
         public IActionResult InicioVenta(clientes cliente)
         {
             if (ModelState.IsValid)
-            {               
+            {
+                // Asigna la fecha de creación si no viene
+                if (cliente.created_at == null)
+                {
+                    cliente.created_at = DateTime.Now;
+                }
+
                 _libroContext.clientes.Add(cliente);
                 _libroContext.SaveChanges();
 
                 pedido_encabezado pedido = new pedido_encabezado
                 {
                     id_cliente = cliente.id,
-                    cantidad_libro = 0,
+                    cantidad_libros = 0,
                     total = 0
                 };
                 _libroContext.pedido_encabezado.Add(pedido);
@@ -131,14 +137,14 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
                             {
                                 l.nombre,
                                 l.precio,
-                                Cantidad = 1,
+                                Cantidad = 1,  // Cada registro representa una unidad
                                 Subtotal = l.precio
                             }).ToList();
 
             int cantidadTotal = detalles.Count;
-            double totalVenta = (double)(detalles.Sum(d => d.Subtotal) ?? 0);
+            decimal totalVenta = detalles.Sum(d => (decimal)(d.Subtotal ?? 0));
 
-            pedido.cantidad_libro = cantidadTotal;
+            pedido.cantidad_libros = cantidadTotal;
             pedido.total = totalVenta;
             _libroContext.pedido_encabezado.Update(pedido);
             _libroContext.SaveChanges();
@@ -176,4 +182,3 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
         }
     }
 }
-
