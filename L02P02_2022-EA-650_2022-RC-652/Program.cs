@@ -1,7 +1,14 @@
+using L02P02_2022_EA_650_2022_RC_652.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<libroContext>(opt =>
+        opt.UseSqlServer(
+            builder.Configuration.GetConnectionString("libroDbConnection")));
 
 var app = builder.Build();
 
