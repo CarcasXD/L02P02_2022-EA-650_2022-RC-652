@@ -20,25 +20,22 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View();
         }
 
-        public IActionResult InicioVenta()
-        {
-            return View();
-        }
+        
         [HttpPost]
-        public IActionResult InicioVenta(cliente cliente)
+        public IActionResult InicioVenta(clientes cliente)
         {
             if (ModelState.IsValid)
             {
                 _libroContext.clientes.Add(cliente);
                 _libroContext.SaveChanges();
 
-                PedidoEncabezado pedido = new PedidoEncabezado
+                pedido_encabezado pedido = new pedido_encabezado
                 {
                     IdClientee = cliente.Id,
                     Fecha = DateTime.Now,
                     Estado = "P"
                 };
-                _libroContext.PedidoEncabezados.Add(pedido);
+                _libroContext.pedido_encabezado.Add(pedido);
                 _libroContext.SaveChanges();
 
                 HttpContext.Session.SetInt32("idPedido",pedido.Id);
