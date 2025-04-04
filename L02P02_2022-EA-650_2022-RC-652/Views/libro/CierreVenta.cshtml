@@ -1,49 +1,51 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Cierre de Venta";
 }
+<div class="container">
+    <h2>Cierre de Venta</h2>
 
-<h2>Cierre de Venta</h2>
+    <h3>Datos del Cliente</h3>
+    @if (ViewBag.Cliente != null)
+    {
+        var cliente = ViewBag.Cliente;
+        <p class="text-msg">
+            Nombre: @cliente.nombre <br />
+            Apellido: @cliente.apellido <br />
+            Email: @cliente.email
+        </p>
+    }
 
-<h3>Datos del Cliente</h3>
-@if (ViewBag.Cliente != null)
-{
-    var cliente = ViewBag.Cliente;
-    <p>
-        Nombre: @cliente.nombre <br />
-        Apellido: @cliente.apellido <br />
-        Email: @cliente.email
-    </p>
-}
-
-<h3>Detalle de la Venta</h3>
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-            <th>Nombre del Libro</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (ViewBag.Detalles != null)
-        {
-            foreach (var item in (IEnumerable<dynamic>)ViewBag.Detalles)
+    <h3>Detalle de la Venta</h3>
+    <table border="1" cellpadding="5" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Nombre del Libro</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Detalles != null)
             {
-                <tr>
-                    <td>@item.nombre</td>
-                    <td>@item.precio.ToString("C")</td>
-                    <td>@item.Cantidad</td>
-                    <td>@item.Subtotal.ToString("C")</td>
-                </tr>
+                foreach (var item in (IEnumerable<dynamic>)ViewBag.Detalles)
+                {
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.precio.ToString("C")</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.Subtotal.ToString("C")</td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<h3>Total: @ViewBag.Total.ToString("C")</h3>
+    <h3>Total: @ViewBag.Total.ToString("C")</h3>
 
-@using (Html.BeginForm("CerrarVenta", "libro", FormMethod.Post))
-{
-    <input type="submit" value="Cerrar Venta" />
-}
+    @using (Html.BeginForm("CerrarVenta", "libro", FormMethod.Post))
+    {
+        <input type="submit" class="btn btn-primary" value="Cerrar Venta" />
+    }
+</div>

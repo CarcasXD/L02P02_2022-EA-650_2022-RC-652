@@ -1,8 +1,10 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Ajusta según tu estructura
     ViewBag.Title = "Inicio";
 }
-
-<h2>Bienvenido a la Librería</h2>
-<p>
-    <a href="@Url.Action("InicioVenta", "libro")">Iniciar Venta</a>
-</p>
+<div class="container">
+    <h2>Bienvenido a la Librería</h2>
+    <p>
+        <a href="@Url.Action("InicioVenta", "libro")" class="btn btn-primary">Iniciar Venta</a>
+    </p>
+</div>

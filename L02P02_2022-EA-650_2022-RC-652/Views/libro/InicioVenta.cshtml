@@ -1,29 +1,31 @@
 ﻿@model L02P02_2022_EA_650_2022_RC_652.Models.clientes
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Inicio de Venta - Registro de Cliente";
 }
-
-<h2>Registro de Cliente</h2>
-
-@using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post, new { id = "clienteForm" }))
-{
-    <div>
-        @Html.LabelFor(m => m.nombre)
-        @Html.EditorFor(m => m.nombre)
-        @Html.ValidationMessageFor(m => m.nombre)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.apellido)
-        @Html.EditorFor(m => m.apellido)
-        @Html.ValidationMessageFor(m => m.apellido)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.email)
-        @Html.EditorFor(m => m.email)
-        @Html.ValidationMessageFor(m => m.email)
-    </div>
-    <a href="#" class="btn btn-primary" onclick="document.getElementById('clienteForm').submit(); return false;">
-        Iniciar Venta
-    </a>
-}
+<div class="container">
+    <h2>Registro de Cliente</h2>
+    @using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post, new { id = "clienteForm" }))
+    {
+        <div>
+            @Html.LabelFor(m => m.nombre)
+            @Html.EditorFor(m => m.nombre)
+            @Html.ValidationMessageFor(m => m.nombre)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.apellido)
+            @Html.EditorFor(m => m.apellido)
+            @Html.ValidationMessageFor(m => m.apellido)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.email)
+            @Html.EditorFor(m => m.email)
+            @Html.ValidationMessageFor(m => m.email)
+        </div>
+        <!-- Enlace que simula un botón para enviar el formulario -->
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="document.getElementById('clienteForm').submit();">
+            Iniciar Venta
+        </a>
+    }
+</div>

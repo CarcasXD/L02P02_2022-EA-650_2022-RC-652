@@ -1,48 +1,48 @@
 ﻿@model IEnumerable<L02P02_2022_EA_650_2022_RC_652.Models.libros>
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listado de Libros";
 }
+<div class="container">
+    <h2>Listado de Libros</h2>
+    <p class="text-msg">Total de libros en el carrito: @ViewBag.TotalItems</p>
 
-<h2>Listado de Libros</h2>
-
-<p>Total de libros en el carrito: @ViewBag.TotalItems</p>
-
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Imagen</th>
-            <th>Acción</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var libro in Model)
-        {
+    <table border="1" cellpadding="5" style="width:100%;">
+        <thead>
             <tr>
-                <td>@libro.nombre</td>
-                <td>@libro.descripcion</td>
-                <td>@libro.precio?.ToString("C")</td>
-                <td>
-                    @if (!string.IsNullOrEmpty(libro.url_imagen))
-                    {
-                        <img src="@libro.url_imagen" alt="@libro.nombre" style="width:100px;" />
-                    }
-                </td>
-                <td>
-                    @using (Html.BeginForm("AgregarLibro", "libro", FormMethod.Post))
-                    {
-                        @Html.Hidden("idLibro", libro.id)
-                        <input type="submit" value="Agregar al Carrito" />
-                    }
-                </td>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>Acción</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var libro in Model)
+            {
+                <tr>
+                    <td>@libro.nombre</td>
+                    <td>@libro.descripcion</td>
+                    <td>@libro.precio?.ToString("C")</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(libro.url_imagen))
+                        {
+                            <img src="@libro.url_imagen" alt="@libro.nombre" style="width:100px;" />
+                        }
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("AgregarLibro", "libro", FormMethod.Post))
+                        {
+                            @Html.Hidden("idLibro", libro.id)
+                            <input type="submit" class="btn btn-secondary" value="Agregar al Carrito" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<br />
-@Html.ActionLink("Completar Venta", "CompletarVenta", "libro", null, new { @class = "btn btn-primary" })
-
+    <br />
+    @Html.ActionLink("Completar Venta", "CompletarVenta", "libro", null, new { @class = "btn btn-primary" })
+</div>
