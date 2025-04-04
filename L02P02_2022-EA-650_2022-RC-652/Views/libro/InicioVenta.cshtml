@@ -1,0 +1,28 @@
+﻿@model L02P02_2022_EA_650_2022_RC_652.Models.clientes
+
+@{
+    ViewBag.Title = "Inicio de Venta - Registro de Cliente";
+}
+
+<h2>Registro de Cliente</h2>
+
+@using (Html.BeginForm("InicioVenta", "libro", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.nombre)
+        @Html.EditorFor(m => m.nombre)
+        @Html.ValidationMessageFor(m => m.nombre)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.apellido)
+        @Html.EditorFor(m => m.apellido)
+        @Html.ValidationMessageFor(m => m.apellido)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.email)
+        @Html.EditorFor(m => m.email)
+        @Html.ValidationMessageFor(m => m.email)
+    </div>
+    <input type="submit" value="Iniciar Venta" />
+}
+

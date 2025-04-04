@@ -130,7 +130,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
                             }).ToList();
 
             int cantidadTotal = detalles.Count;
-            double totalVenta = detalles.Sum(d => d.Subtotal);
+            double totalVenta = detalles.Sum(d => d.Subtotal) ?? 0;
 
             pedido.cantidad_libro = cantidadTotal;
             pedido.total = totalVenta;
