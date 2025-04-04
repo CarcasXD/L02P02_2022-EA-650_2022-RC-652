@@ -2,14 +2,12 @@
 
 namespace L02P02_2022_EA_650_2022_RC_652.Models
 {
-    public class comentarios_libros
+    public class pedido_detalle
     {
         [Key]
         public int id { get; set; }
+        public int? id_pedido { get; set; }
         public int? id_libro { get; set; }
-        public string? comentarios {  get; set; }
-        public string? usuario { get; set; }
         public DateTime? created_at { get; set; }
-
     }
 }
