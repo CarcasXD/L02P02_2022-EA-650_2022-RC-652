@@ -31,7 +31,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
         public IActionResult InicioVenta(clientes cliente)
         {
             if (ModelState.IsValid)
-            {
+            {               
                 _libroContext.clientes.Add(cliente);
                 _libroContext.SaveChanges();
 
