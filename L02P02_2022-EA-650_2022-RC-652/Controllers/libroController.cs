@@ -21,9 +21,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View();
         }
 
-        // ---------------------------
-        // PROTOTIPO 01: Inicio de Venta
-        // ---------------------------
+       
         public IActionResult InicioVenta()
         {
             return View();
@@ -34,7 +32,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Asigna la fecha de creación si no viene
+               
                 if (cliente.created_at == null)
                 {
                     cliente.created_at = DateTime.Now;
@@ -59,9 +57,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View(cliente);
         }
 
-        // ---------------------------
-        // PROTOTIPO 02: Listado de Libros y Adición
-        // ---------------------------
+      
         public IActionResult ListadoLibros()
         {
             var libros = _libroContext.libros.ToList();
@@ -111,9 +107,6 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return RedirectToAction("CierreVenta");
         }
 
-        // ---------------------------
-        // PROTOTIPO 03: Cierre de Venta
-        // ---------------------------
         public IActionResult CierreVenta()
         {
             int? idPedido = HttpContext.Session.GetInt32("idPedido");
@@ -137,7 +130,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
                             {
                                 l.nombre,
                                 l.precio,
-                                Cantidad = 1,  // Cada registro representa una unidad
+                                Cantidad = 1,  
                                 Subtotal = l.precio
                             }).ToList();
 
