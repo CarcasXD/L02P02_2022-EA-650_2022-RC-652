@@ -23,6 +23,7 @@
         @Html.EditorFor(m => m.email)
         @Html.ValidationMessageFor(m => m.email)
     </div>
-    @Html.ActionLink("Iniciar Venta", "InicioVenta", "libro", null, new { onclick = "document.getElementById('clienteForm').submit(); return false;", @class = "btn btn-primary" })
+    <a href="#" class="btn btn-primary" onclick="document.getElementById('clienteForm').submit(); return false;">
+        Iniciar Venta
+    </a>
 }
-
