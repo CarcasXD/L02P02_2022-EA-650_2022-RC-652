@@ -21,7 +21,9 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View();
         }
 
-        
+        // ---------------------------
+        // PROTOTIPO 01: Inicio de Venta
+        // ---------------------------
         public IActionResult InicioVenta()
         {
             return View();
@@ -51,16 +53,16 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View(cliente);
         }
 
+        // ---------------------------
+        // PROTOTIPO 02: Listado de Libros y Adición
+        // ---------------------------
         public IActionResult ListadoLibros()
         {
-
             var libros = _libroContext.libros.ToList();
-
 
             int? idPedido = HttpContext.Session.GetInt32("idPedido");
             if (idPedido == null)
             {
-              
                 return RedirectToAction("InicioVenta");
             }
 
@@ -103,6 +105,9 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return RedirectToAction("CierreVenta");
         }
 
+        // ---------------------------
+        // PROTOTIPO 03: Cierre de Venta
+        // ---------------------------
         public IActionResult CierreVenta()
         {
             int? idPedido = HttpContext.Session.GetInt32("idPedido");
@@ -124,9 +129,9 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
                             where pd.id_pedido == idPedido
                             select new
                             {
-                                l.nombre,       
+                                l.nombre,
                                 l.precio,
-                                Cantidad = 1,   
+                                Cantidad = 1,
                                 Subtotal = l.precio
                             }).ToList();
 
@@ -140,7 +145,6 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
 
             ViewBag.Total = totalVenta;
             ViewBag.Detalles = detalles;
-
 
             return View();
         }
@@ -172,3 +176,4 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
         }
     }
 }
+
