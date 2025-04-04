@@ -25,7 +25,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult InicioVenta(Cliente cliente)
+        public IActionResult InicioVenta(cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -45,6 +45,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Controllers
 
                 return RedirectToAction("ListadoLibros");   
             }
+            return View(cliente);
         }
 
     }
