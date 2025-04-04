@@ -11,7 +11,7 @@ namespace L02P02_2022_EA_650_2022_RC_652.Models
         public string? url_imagen {  get; set; }
         public int? id_autor { get; set; }
         public int? id_categoria { get; set; }
-        public double? precio { get; set; }
+        public decimal? precio { get; set; }
         public string? estado { get; set; }
 
     }
